@@ -2,10 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const { exec } = require("child_process");
+const path = require("path");
 const dotenv = require("dotenv");
 
 dotenv.config();
 const app = express();
+
 // Enable CORS for all routes
 app.use(cors());
 app.use(bodyParser.json());
@@ -18,11 +20,22 @@ app.get("/test", (req, res) => {
 app.get("/analyze-stocks", (req, res) => {
   console.log("Received request to analyze stocks", req.query);
 
-   // Convert query parameters into a string of arguments
-   const tickers = req.query.tickers || ""; // e.g., "AAPL,MSFT,GOOGL"
-   const args = `--tickers ${tickers}`;
+  // Validate and sanitize the `tickers` query parameter
+  const tickers = req.query.tickers;
+  if (!tickers) {
+    res.status(400).send({ error: "Tickers query parameter is required" });
+    return;
+  }
+  
+  // Sanitize the tickers input to prevent command injection
+  const sanitizedTickers = tickers.replace(/[^a-zA-Z0-9,]/g, "");
+  const args = `--tickers ${sanitizedTickers}`;
 
-  exec(`python3 ../scripts/analyze_stock.py ${args}`, (error, stdout, stderr) => {
+  // Use an absolute path for the Python script
+  const scriptPath = path.resolve(__dirname, "../scripts/analyze_stock.py");
+
+  // Execute the Python script
+  exec(`python3 ${scriptPath} ${args}`, (error, stdout, stderr) => {
     if (error) {
       console.error(`Error executing Python script: ${error.message}`);
       res.status(500).send({ error: "Error executing Python script" });
@@ -46,6 +59,7 @@ app.get("/analyze-stocks", (req, res) => {
   });
 });
 
+// Start the server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

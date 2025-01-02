@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "test",
-    "start": "node server.js"
+    "start": "node ./api/index.js"
   },
   "author": "Abdullah Abbasi",
   "license": "ISC",

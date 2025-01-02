@@ -10,6 +10,11 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// Test URL to check if the server is running
+app.get("/test", (req, res) => {
+  res.status(200).send({ message: "Server is up and running!" });
+});
+
 app.get("/analyze-stocks", (req, res) => {
   console.log("Received request to analyze stocks", req.query);
 

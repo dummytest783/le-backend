@@ -2,11 +2,9 @@
   "name": "stocklele-server",
   "version": "1.0.0",
   "description": "stocklele server",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "test": "test",
-    "start": "node ./index.js",
-    "build": "node ./index.js"
+    "start": "node index.js"
   },
   "author": "Abdullah Abbasi",
   "license": "ISC",

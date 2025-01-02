@@ -22,7 +22,7 @@ app.get("/analyze-stocks", (req, res) => {
    const tickers = req.query.tickers || ""; // e.g., "AAPL,MSFT,GOOGL"
    const args = `--tickers ${tickers}`;
 
-  exec(`python3 scripts/analyze_stock.py ${args}`, (error, stdout, stderr) => {
+  exec(`python3 ../scripts/analyze_stock.py ${args}`, (error, stdout, stderr) => {
     if (error) {
       console.error(`Error executing Python script: ${error.message}`);
       res.status(500).send({ error: "Error executing Python script" });

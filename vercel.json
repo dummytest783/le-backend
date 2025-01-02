@@ -6,7 +6,7 @@
         "use": "@vercel/node"
       },
       {
-        "src": "scripts/*.py",
+        "src": "api/*.py",
         "use": "@vercel/python"
       }
     ],

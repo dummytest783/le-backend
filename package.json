@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "test",
-    "start": "node ./api/index.js",
-    "build": "node ./api/index.js"
+    "start": "node ./index.js",
+    "build": "node ./index.js"
   },
   "author": "Abdullah Abbasi",
   "license": "ISC",

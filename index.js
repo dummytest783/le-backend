@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get("/api/analyze-stocks", (req, res) => {
+app.get("/analyze-stocks", (req, res) => {
   console.log("Received request to analyze stocks", req.query);
 
    // Convert query parameters into a string of arguments

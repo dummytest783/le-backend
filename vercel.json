@@ -6,7 +6,7 @@
         "use": "@vercel/node"
       },
       {
-        "src": "scripts/analyze_stock.py",
+        "src": "*.py",
         "use": "@vercel/python"
       }
     ],

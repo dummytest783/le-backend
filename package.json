@@ -1,7 +1,7 @@
 {
   "name": "stocklele-server",
   "version": "1.0.0",
-  "description": "stocklele server",
+  "description": "stocklele server side",
   "main": "api/index.js",
   "scripts": {
     "start": "node api/index.js"
